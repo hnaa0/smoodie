@@ -17,6 +17,11 @@ abstract class SmoodieTheme {
     ),
     inputDecorationTheme: const InputDecorationTheme(
       filled: true,
+      isDense: true,
+      contentPadding: EdgeInsets.symmetric(
+        horizontal: 18,
+        vertical: 14,
+      ),
     ),
     tabBarTheme: const TabBarTheme(
       splashFactory: NoSplash.splashFactory,
@@ -38,6 +43,11 @@ abstract class SmoodieTheme {
     ),
     inputDecorationTheme: const InputDecorationTheme(
       filled: true,
+      isDense: true,
+      contentPadding: EdgeInsets.symmetric(
+        horizontal: 18,
+        vertical: 14,
+      ),
     ),
     tabBarTheme: const TabBarTheme(
       splashFactory: NoSplash.splashFactory,

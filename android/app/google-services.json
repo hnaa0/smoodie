@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "422717374065",
+    "project_id": "smoodie-85f91",
+    "storage_bucket": "smoodie-85f91.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:422717374065:android:ac3c03b8a7fdc8f04aa5d0",
+        "android_client_info": {
+          "package_name": "com.example.smoodie"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtFpRGIEWnPi2syoLZUKUk64LeBR9WZFQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
