@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:smoodie/constants/colors.dart';
-import 'package:smoodie/features/mood/views/models/mood_type.dart';
+import 'package:smoodie/features/mood/models/mood_type.dart';
 
 class MoodTag extends StatelessWidget {
   const MoodTag({

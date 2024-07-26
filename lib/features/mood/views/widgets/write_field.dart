@@ -7,9 +7,13 @@ class WriteField extends StatelessWidget {
   const WriteField({
     super.key,
     required this.type,
+    required this.controller,
+    required this.formData,
   });
 
   final WriteFieldType type;
+  final TextEditingController controller;
+  final Map<String, dynamic> formData;
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +34,7 @@ class WriteField extends StatelessWidget {
         ),
         const Gap(8),
         TextFormField(
+          controller: controller,
           maxLines: type == WriteFieldType.content ? 5 : 1,
           decoration: InputDecoration(
             fillColor: Colors.white,
@@ -62,6 +67,11 @@ class WriteField extends StatelessWidget {
               borderRadius: BorderRadius.circular(16),
             ),
           ),
+          onSaved: (newValue) {
+            if (newValue != null) {
+              formData[type.name] = newValue;
+            }
+          },
         ),
       ],
     );
