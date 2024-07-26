@@ -3,9 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
 import 'package:smoodie/constants/colors.dart';
+import 'package:smoodie/features/mood/models/mood_model.dart';
 
 class MoodCard extends StatelessWidget {
-  const MoodCard({super.key});
+  const MoodCard({
+    super.key,
+    required this.mood,
+  });
+
+  final MoodModel mood;
 
   @override
   Widget build(BuildContext context) {
@@ -20,29 +26,29 @@ class MoodCard extends StatelessWidget {
           Container(
             width: 50,
             height: 50,
-            decoration: const BoxDecoration(
-              color: Color(SmoodieColors.apricot),
+            decoration: BoxDecoration(
+              color: Color(mood.moodType.color),
               shape: BoxShape.circle,
             ),
           ),
           const Gap(20),
-          const Expanded(
+          Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "제목입니다.",
-                  style: TextStyle(
+                  mood.title,
+                  style: const TextStyle(
                     fontSize: 16,
                   ),
                 ),
-                Gap(8),
+                const Gap(8),
                 Text(
                   softWrap: true,
                   maxLines: 3,
                   overflow: TextOverflow.ellipsis,
-                  "내용입니다. 사건은 다가와 아오에이 거세게 커져가 아오에이, 질문은 계속돼 아오에이 우린 어디서 왔나 오에이 사건은 다가와 아오에이 거세게 커져가 아오에이, 질문은 계속돼 아오에이 우린 어디서 왔나 오에이",
-                  style: TextStyle(
+                  mood.content,
+                  style: const TextStyle(
                     color: Color(
                       SmoodieColors.gray_700,
                     ),

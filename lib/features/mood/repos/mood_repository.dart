@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:smoodie/features/mood/models/mood_model.dart';
 import 'package:smoodie/features/mood/models/mood_type.dart';
 
 class MoodRepository {
@@ -22,6 +23,17 @@ class MoodRepository {
     final docId = docRef.id;
 
     await _firestore.collection("moods").doc(docId).update({"id": docId});
+  }
+
+  Stream<List<MoodModel>> streamMoods(String userId) {
+    return _firestore
+        .collection("moods")
+        .where("userId", isEqualTo: userId)
+        .orderBy("createdAt", descending: true)
+        .snapshots()
+        .map((snapshot) => snapshot.docs
+            .map((doc) => MoodModel.fromJson(json: doc.data()))
+            .toList());
   }
 }
 

@@ -30,7 +30,7 @@ class MoodModel {
   }
 
   MoodModel.fromJson({required Map<String, dynamic> json})
-      : id = json["id"],
+      : id = json["id"] ?? "",
         title = json["title"],
         content = json["content"],
         userId = json["userId"],
