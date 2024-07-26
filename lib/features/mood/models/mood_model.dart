@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:intl/intl.dart';
 import 'package:smoodie/features/mood/models/mood_type.dart';
 
 class MoodModel {
@@ -35,5 +36,12 @@ class MoodModel {
         content = json["content"],
         userId = json["userId"],
         createdAt = json["createdAt"] ?? Timestamp.now(),
-        moodType = MoodTypeExtension.fromString(json["moodType"]);
+        moodType = MoodTypeExtension.fromString(
+          json["moodType"],
+        );
+
+  String convertDate() {
+    final createdAt = this.createdAt.toDate();
+    return DateFormat('yyyy-MM-dd').add_jm().format(createdAt);
+  }
 }

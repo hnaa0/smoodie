@@ -39,7 +39,7 @@ class MoodCard extends StatelessWidget {
                 Text(
                   mood.title,
                   style: const TextStyle(
-                    fontSize: 16,
+                    fontSize: 18,
                   ),
                 ),
                 const Gap(8),
@@ -53,6 +53,21 @@ class MoodCard extends StatelessWidget {
                       SmoodieColors.gray_700,
                     ),
                   ),
+                ),
+                const Gap(16),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text(
+                      mood.convertDate(),
+                      style: const TextStyle(
+                        fontSize: 12,
+                        color: Color(
+                          SmoodieColors.gray_400,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
