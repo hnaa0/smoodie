@@ -35,6 +35,41 @@ class MoodRepository {
             .map((doc) => MoodModel.fromJson(json: doc.data()))
             .toList());
   }
+
+  Future<List<MapEntry<MoodType, int>>> getFrequentlyMood(String userId) async {
+    DateTime now = DateTime.now();
+    DateTime oneMonthAgo = now.subtract(const Duration(days: 30));
+    final Map<MoodType, int> frequencies = {};
+
+    // 1달간 작성된 모든 mood 가져오기
+    final snapshot = await _firestore
+        .collection("moods")
+        .where("userId", isEqualTo: userId)
+        .where("createdAt",
+            isGreaterThanOrEqualTo: Timestamp.fromDate(oneMonthAgo))
+        .orderBy("createdAt", descending: true)
+        .get();
+
+    final getAllMoods = snapshot.docs
+        .map((doc) => MoodModel.fromJson(json: doc.data()))
+        .toList();
+
+    // 타입별 빈도 계산
+    final moodTypes = getAllMoods.map((mood) => mood.moodType).toList();
+
+    for (var mood in moodTypes) {
+      frequencies[mood] = (frequencies[mood] ?? 0) + 1;
+    }
+
+    final sorted = frequencies.entries.toList();
+    sorted.sort(
+      (a, b) => b.value.compareTo(a.value),
+    );
+
+    // 상위 3개 추려내기
+    final top3 = sorted.take(3).toList();
+    return top3;
+  }
 }
 
 final moodRepo = Provider((ref) => MoodRepository());

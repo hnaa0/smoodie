@@ -53,7 +53,7 @@ class _MainNavScreenState extends State<MainNavScreen> {
           ),
           Offstage(
             offstage: _selectedIndex != 1,
-            child: const AnalysisScreen(),
+            child: AnalysisScreen(selectedIndex: _selectedIndex),
           ),
           Offstage(
             offstage: _selectedIndex != 2,
