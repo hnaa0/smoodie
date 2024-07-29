@@ -10,7 +10,7 @@ class HomeSliverAppBar extends StatelessWidget {
       flexibleSpace: FlexibleSpaceBar(
         centerTitle: true,
         title: const Text(
-          "sMOODie",
+          "SMOODIE",
           style: TextStyle(
             fontFamily: "InooAriDuri",
             fontSize: 32,

@@ -96,7 +96,9 @@ class AnalysisScreen extends ConsumerWidget {
                           fontSize: 22,
                           fontFamily: "InooAriDuri",
                         ),
-                      ),
+                      ).animate().fadeIn(
+                          delay: 400.ms,
+                          duration: selectedIndex == 1 ? 500.ms : 0.ms),
                       shaderCallback: (bounds) => const LinearGradient(
                         colors: [
                           Color(SmoodieColors.atomicTangerine),
@@ -134,11 +136,17 @@ class AnalysisScreen extends ConsumerWidget {
                                   width: 50,
                                   height: 50,
                                   decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: Color(
-                                      type.key.color,
-                                    ),
-                                  ),
+                                      shape: BoxShape.circle,
+                                      color: Color(
+                                        type.key.color,
+                                      ),
+                                      boxShadow: const [
+                                        BoxShadow(
+                                          color: Color(SmoodieColors.gray_200),
+                                          spreadRadius: 0.5,
+                                          blurRadius: 1,
+                                        )
+                                      ]),
                                 ),
                                 const Gap(14),
                                 Text(
@@ -158,7 +166,7 @@ class AnalysisScreen extends ConsumerWidget {
                                     fontSize: 18,
                                     fontWeight: FontWeight.w600,
                                     color: Color(
-                                      SmoodieColors.gray_600,
+                                      SmoodieColors.gray_500,
                                     ),
                                   ),
                                 ),
