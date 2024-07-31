@@ -6,29 +6,25 @@ import 'package:smoodie/features/mood/models/mood_type.dart';
 import 'package:smoodie/features/mood/repos/mood_repository.dart';
 
 class AnalysisViewModel extends AsyncNotifier<List<MapEntry<MoodType, int>>> {
-  late final MoodRepository _moodRepository;
-  late final AuthRepository _authRepository;
-
   @override
   Future<List<MapEntry<MoodType, int>>> build() async {
-    _moodRepository = ref.read(moodRepo);
-    _authRepository = ref.read(authRepo);
+    final authRepository = ref.read(authRepo);
+    final moodRepository = ref.read(moodRepo);
 
-    if (_authRepository.isLoggedIn) {
-      final uid = _authRepository.user!.uid;
-      final types = await getFrequencies(uid);
-
-      return types;
+    if (authRepository.isLoggedIn) {
+      final uid = authRepository.user?.uid;
+      if (uid != null) {
+        return await getFrequencies(uid, moodRepository);
+      }
     }
-
     return [];
   }
 
-  Future<List<MapEntry<MoodType, int>>> getFrequencies(String userUid) async {
+  Future<List<MapEntry<MoodType, int>>> getFrequencies(
+      String userUid, MoodRepository moodRepository) async {
     state = const AsyncValue.loading();
 
-    final user = _authRepository.user!;
-    final types = await _moodRepository.getFrequentlyMood(user.uid);
+    final types = await moodRepository.getFrequentlyMood(userUid);
 
     state = AsyncValue.data(types);
     return types;

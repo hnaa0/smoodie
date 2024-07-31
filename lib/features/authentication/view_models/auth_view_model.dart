@@ -4,7 +4,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:smoodie/features/analysis/view_models/analysis_view_model.dart';
 import 'package:smoodie/features/authentication/repos/auth_repository.dart';
+import 'package:smoodie/features/mood/view_models/fetch_mood_view_model.dart';
 import 'package:smoodie/features/mood/views/home_screen.dart';
 import 'package:smoodie/features/user/view_models/user_view_model.dart';
 
@@ -86,6 +88,10 @@ class AuthViewModel extends AsyncNotifier<void> {
     state = await AsyncValue.guard(() async {
       await _authRepository.signOut();
     });
+
+    ref.invalidate(userProvider);
+    ref.invalidate(fetchMoodProvider);
+    ref.invalidate(analysisProvider);
   }
 }
 

@@ -10,7 +10,10 @@ class FetchMoodViewModel extends StreamNotifier<List<MoodModel>> {
   }
 
   Stream<List<MoodModel>> _fetchMoods() {
-    final user = ref.read(authRepo).user!;
+    final user = ref.read(authRepo).user;
+    if (user == null) {
+      return const Stream.empty();
+    }
     final result = ref.read(moodRepo).streamMoods(user.uid);
 
     return result;
