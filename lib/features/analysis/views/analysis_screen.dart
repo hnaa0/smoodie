@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:smoodie/constants/colors.dart';
 import 'package:smoodie/features/analysis/view_models/analysis_view_model.dart';
+import 'package:smoodie/features/user/view_models/user_view_model.dart';
 
 class AnalysisScreen extends ConsumerWidget {
   static const routeUrl = "/analysis";
@@ -18,6 +19,7 @@ class AnalysisScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final user = ref.watch(userProvider);
     return ref.watch(analysisProvider).when(
           data: (types) {
             return SafeArea(
@@ -35,23 +37,48 @@ class AnalysisScreen extends ConsumerWidget {
                       child: const Text(
                         "Analysis",
                         style: TextStyle(
+                          fontFamily: "InooAriDuri",
                           fontWeight: FontWeight.w500,
                           fontSize: 20,
-                          color: Color(SmoodieColors.gray_700),
+                          color: Color(SmoodieColors.apricot),
                         ),
                       ),
                     ),
                     const Gap(40),
-                    const Text(
-                      "최근 한 달간 ㅇㅇ님이 자주 기록한 무드는",
-                      style: TextStyle(
-                        color: Color(
-                          SmoodieColors.gray_800,
+                    Row(
+                      children: [
+                        const Text(
+                          "최근 한 달간",
+                          style: TextStyle(
+                            color: Color(
+                              SmoodieColors.gray_700,
+                            ),
+                            fontSize: 16,
+                          ),
                         ),
-                        fontSize: 16,
-                      ),
+                        const Gap(4),
+                        Text(
+                          user.value!.name,
+                          style: const TextStyle(
+                            color: Color(
+                              SmoodieColors.atomicTangerine,
+                            ),
+                            fontSize: 28,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        const Text(
+                          "님이 자주 기록한 무드는",
+                          style: TextStyle(
+                            color: Color(
+                              SmoodieColors.gray_700,
+                            ),
+                            fontSize: 16,
+                          ),
+                        ),
+                      ],
                     ),
-                    const Gap(10),
+                    const Gap(4),
                     Wrap(
                       crossAxisAlignment: WrapCrossAlignment.end,
                       spacing: 10,

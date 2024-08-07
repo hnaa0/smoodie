@@ -16,4 +16,26 @@ class UserModel {
       "email": email,
     };
   }
+
+  UserModel.fromJson(Map<String, dynamic> json)
+      : name = json["name"],
+        uid = json["uid"],
+        email = json["email"];
+
+  UserModel.empty()
+      : name = "",
+        uid = "",
+        email = "";
+
+  UserModel copyWith({
+    String? name,
+    String? email,
+    String? uid,
+  }) {
+    return UserModel(
+      name: name ?? this.name,
+      email: email ?? this.email,
+      uid: uid ?? this.uid,
+    );
+  }
 }

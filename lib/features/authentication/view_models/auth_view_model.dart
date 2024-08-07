@@ -44,6 +44,8 @@ class AuthViewModel extends AsyncNotifier<void> {
       if (!context.mounted) return;
       context.go(HomeScreen.routeUrl);
     }
+
+    ref.invalidate(userProvider);
   }
 
   Future<void> signUp({

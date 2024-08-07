@@ -8,6 +8,15 @@ class UserRepository {
   Future<void> createProfile(UserModel profile) async {
     await _firestore.collection("users").doc(profile.uid).set(profile.toJson());
   }
+
+  Future<Map<String, dynamic>?> getProfile(String uid) async {
+    final doc = await _firestore.collection("users").doc(uid).get();
+    return doc.data();
+  }
+
+  Future<void> updateProfile(String uid, Map<String, dynamic> data) async {
+    await _firestore.collection("users").doc(uid).update(data);
+  }
 }
 
 final userRepo = Provider((ref) => UserRepository());
