@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -45,38 +46,30 @@ class AnalysisScreen extends ConsumerWidget {
                       ),
                     ),
                     const Gap(40),
-                    Row(
-                      children: [
-                        const Text(
-                          "최근 한 달간",
-                          style: TextStyle(
-                            color: Color(
-                              SmoodieColors.gray_700,
-                            ),
-                            fontSize: 16,
+                    RichText(
+                      text: TextSpan(
+                        text: "최근 한 달간 ",
+                        style: const TextStyle(
+                          fontFamily: "Pretendard",
+                          color: Color(
+                            SmoodieColors.gray_800,
                           ),
+                          fontSize: 16,
                         ),
-                        const Gap(4),
-                        Text(
-                          user.value!.name,
-                          style: const TextStyle(
-                            color: Color(
-                              SmoodieColors.atomicTangerine,
+                        children: [
+                          TextSpan(
+                            text: user.value!.name,
+                            style: const TextStyle(
+                              fontSize: 24,
+                              fontWeight: FontWeight.w500,
+                              color: Color(
+                                SmoodieColors.atomicTangerine,
+                              ),
                             ),
-                            fontSize: 28,
-                            fontWeight: FontWeight.w500,
                           ),
-                        ),
-                        const Text(
-                          "님이 자주 기록한 무드는",
-                          style: TextStyle(
-                            color: Color(
-                              SmoodieColors.gray_700,
-                            ),
-                            fontSize: 16,
-                          ),
-                        ),
-                      ],
+                          const TextSpan(text: "님이 자주 기록한 무드는"),
+                        ],
+                      ),
                     ),
                     const Gap(4),
                     Wrap(

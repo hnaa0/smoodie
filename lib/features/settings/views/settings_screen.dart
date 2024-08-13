@@ -28,8 +28,10 @@ class SettingsScreen extends ConsumerWidget {
               child: const Text(
                 "Settings",
                 style: TextStyle(
+                  fontFamily: "InooAriDuri",
                   fontWeight: FontWeight.w500,
                   fontSize: 20,
+                  color: Color(SmoodieColors.apricot),
                 ),
               ),
             ),

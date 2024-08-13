@@ -121,8 +121,10 @@ class _WriteScreenState extends ConsumerState<WriteScreen> {
                 child: const Text(
                   "Add Mood",
                   style: TextStyle(
+                    fontFamily: "InooAriDuri",
                     fontWeight: FontWeight.w500,
                     fontSize: 20,
+                    color: Color(SmoodieColors.apricot),
                   ),
                 ),
               ),
