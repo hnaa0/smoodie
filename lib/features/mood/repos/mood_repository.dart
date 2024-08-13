@@ -70,6 +70,10 @@ class MoodRepository {
     final top3 = sorted.take(3).toList();
     return top3;
   }
+
+  Future<void> deleteMood(String id) async {
+    await _firestore.collection("moods").doc(id).delete();
+  }
 }
 
 final moodRepo = Provider((ref) => MoodRepository());
