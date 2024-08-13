@@ -2,18 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:smoodie/constants/colors.dart';
 
 class HomeSliverAppBar extends StatelessWidget {
-  const HomeSliverAppBar({super.key});
+  const HomeSliverAppBar({super.key, required this.scrollTop});
+
+  final Function scrollTop;
 
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
       flexibleSpace: FlexibleSpaceBar(
         centerTitle: true,
-        title: const Text(
-          "SMOODIE",
-          style: TextStyle(
-            fontFamily: "InooAriDuri",
-            fontSize: 32,
+        title: GestureDetector(
+          onTap: () => scrollTop(),
+          child: const Text(
+            "SMOODIE",
+            style: TextStyle(
+              fontFamily: "InooAriDuri",
+              fontSize: 32,
+            ),
           ),
         ),
         titlePadding: const EdgeInsets.symmetric(

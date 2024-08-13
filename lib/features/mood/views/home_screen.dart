@@ -20,6 +20,16 @@ class HomeScreen extends ConsumerStatefulWidget {
 class _HomeScreenState extends ConsumerState<HomeScreen> {
   final ScrollController _scrollController = ScrollController();
 
+  void _scrollToTop() {
+    _scrollController.animateTo(
+      0,
+      duration: const Duration(
+        milliseconds: 300,
+      ),
+      curve: Curves.easeInOut,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return ref.watch(fetchMoodProvider).when(
@@ -28,7 +38,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               child: CustomScrollView(
                 controller: _scrollController,
                 slivers: [
-                  const HomeSliverAppBar(),
+                  HomeSliverAppBar(scrollTop: _scrollToTop),
                   const SliverGap(10),
                   moods.isEmpty
                       ? SliverToBoxAdapter(
